@@ -25,6 +25,30 @@ class Solution(object):
             self.setList(resultList, node.left)
             self.setList(resultList, node.right)
 
+    def levelOrder(self, root):
+        """
+        层次遍历（广度优先算法）
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        listQueue = []
+        result = []
+        next = [root]
+        while next:
+            listQueue = []
+            currentList = []
+            for index in range(len(next)):
+                current = next[index]
+                if current:
+                    currentList.append(current.val)
+                    listQueue.append(current.left)
+                    listQueue.append(current.right)
+            if currentList:
+                result.append(currentList)
+            next = listQueue
+
+        return result
+
 if __name__ == '__main__':
     root = TreeNode(1)
     rootRight = TreeNode(2)
