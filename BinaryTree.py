@@ -12,6 +12,7 @@ class TreeNode(object):
 class Solution(object):
     def preorderTraversal(self, root):
         """
+        前序遍历
         :type root: TreeNode
         :rtype: List[int]
         """
@@ -48,6 +49,25 @@ class Solution(object):
             next = listQueue
 
         return result
+
+    def maxDepth(self, root):
+        """
+        最大深度，自低向上
+        :type root: TreeNode
+        :rtype: int
+        """
+        return self.bottom_up(root)
+
+    def bottom_up(self, root):
+        if not root:
+            return 0
+        left = self.bottom_up(root.left)
+        right = self.bottom_up(root.right)
+
+        return self.maxV(left, right) + 1
+
+    def maxV(self, a, b):
+        return a if a > b else b
 
 if __name__ == '__main__':
     root = TreeNode(1)
