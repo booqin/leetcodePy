@@ -69,6 +69,25 @@ class Solution(object):
     def maxV(self, a, b):
         return a if a > b else b
 
+    def recursion(self, root_left, root_right):
+        """
+        递归处理镜像对称的问题，在tree中的递归可以理解为
+        f(n) = af(n.l)*f(n.r)
+        f(0) = a
+
+        :param root_left:
+        :param root_right:
+        :return:
+        """
+        if root_left and root_right:
+            return (root_left.val == root_right.val) and self.recursion(root_left.left, root_right.right) and self.recursion(root_left.right, root_right.left)
+        else:
+            if not root_left and not root_right:
+                return True
+            else:
+                return False
+
+
 if __name__ == '__main__':
     root = TreeNode(1)
     rootRight = TreeNode(2)
